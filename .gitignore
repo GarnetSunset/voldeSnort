@@ -1,0 +1,8 @@
+threshold_misconfigs.txt
+version.txt
+*.pyc
+*.rules
+comparison\
+comparison\*
+extras\
+extras\*
