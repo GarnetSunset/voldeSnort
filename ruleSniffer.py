@@ -18,11 +18,6 @@ if os.path.isfile("version.txt"):
     if verNum == curVer:
         print("Congrats! You're on the latest version! One less nightmare to worry about.")
         noscrape = 1
-    else:
-        f.write(urlopen("https://rules.emergingthreats.net/open-nogpl/snort-2.9.0/version.txt").read())
-        f.close()
-        curVer = open("version.txt").read()
-        noscrape = 0
 else:
     with open("version.txt",'wb') as f:
         f.write(urlopen("https://rules.emergingthreats.net/open-nogpl/snort-2.9.0/version.txt").read())
