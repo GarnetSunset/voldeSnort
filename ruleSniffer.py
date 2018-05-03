@@ -9,6 +9,7 @@ from six.moves.urllib.request import urlopen
 emergURL = 'https://rules.emergingthreats.net/open-nogpl/snort-2.9.0/rules/'
 excludes = ['version.txt']
 ruleList = []
+noscrape = 0
 ticker = 0
 totalRules = 0
 
@@ -91,14 +92,15 @@ if noscrape == 0:
     if(ticker > 0):
         print("The last threshold listings are in the extras folder!\n")
 
-verNum = curVer[:-1]
+if os.path.isfile(verNum.rstrip() + "-emerging-threats.rules"):
+    os.remove(verNum.rstrip() + "-emerging-threats.rules")
 
 print("Concatenating all files into one file named \"" + verNum + "-emerging-threats.rules\"")
 
 for dname, dirs, files in os.walk("comparison"):
     for fname in files:
         fpath = os.path.join(dname, fname)
-        with open(verNum + "-emerging-threats.rules", "w") as outfile:
+        with open(verNum.rstrip() + "-emerging-threats.rules", "a+") as outfile:
             with open(fpath, "rb") as infile:
 
                 outfile.write(infile.read())
